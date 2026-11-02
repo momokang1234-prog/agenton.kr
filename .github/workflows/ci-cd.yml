@@ -1,0 +1,56 @@
+name: AgentOn Site Integrity & Vercel CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  verify-integrity:
+    name: Verify SSOT & Site Integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate vercel.json Syntax
+        run: python3 -m json.tool vercel.json > /dev/null
+
+      - name: Run AgentOn Site Verification Script
+        run: python3 scripts/verify_site.py
+
+  vercel-deploy:
+    name: Deploy to Vercel Production
+    needs: verify-integrity
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via Vercel CLI (or Delegate to Vercel GitHub App)
+        run: |
+          if [ -n "$VERCEL_TOKEN" ] && [ -n "$VERCEL_ORG_ID" ] && [ -n "$VERCEL_PROJECT_ID" ]; then
+            echo "[INFO] Vercel Secrets detected. Deploying to production via Vercel CLI..."
+            npx --yes vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+            npx --yes vercel build --prod --token="$VERCEL_TOKEN"
+            npx --yes vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+          else
+            echo "[INFO] VERCEL_TOKEN / VERCEL_ORG_ID / VERCEL_PROJECT_ID secrets are not configured."
+            echo "[PASS] Relying on native Vercel GitHub App integration for automatic deployment."
+          fi

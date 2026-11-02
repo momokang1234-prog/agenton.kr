@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에이전트온 (AgentOn) | AI-Native Operation & Automation Studio</title>
+  <meta name="description" content="반복되는 마케팅·채용·운영을 검증된 AI 시스템으로 대체합니다. 슬랙 기반 메타 광고 무인 제어부터 글로벌 인재 검증, 백오피스 정산 자동화까지 실제 작동하는 엔지니어링 파이프라인을 구축합니다.">
+  <meta name="keywords" content="에이전트온, AgentOn, 메타 광고 자동화, 슬랙 광고 컨트롤러, 글로벌 채용 대행, 백오피스 정산 자동화, AI 오퍼레이션">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agenton.kr">
+  <meta property="og:title" content="에이전트온 (AgentOn) | AI-Native Operation & Automation Studio">
+  <meta property="og:description" content="반복되는 마케팅·채용·운영을 검증된 AI 시스템으로 대체합니다. 메타 광고 무인 제어, 글로벌 인재 검증, 매장 백오피스 정산 자동화 파이프라인.">
+  <meta property="og:site_name" content="에이전트온 (AgentOn)">
+  <link rel="canonical" href="https://agenton.kr">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+          },
+          colors: {
+            obsidian: '#090A0F',
+            surface: '#11131A',
+            panel: '#171A24',
+            borderline: '#25293A'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: #090A0F;
+      color: #F3F4F6;
+      letter-spacing: -0.015em;
+      overflow-x: hidden;
+    }
+    .glass-panel {
+      background: rgba(23, 26, 36, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-nav {
+      background: rgba(9, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .mono-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+  <!-- Top Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-3 group">
+        <div class="w-9 h-9 rounded-lg bg-white text-black flex items-center justify-center font-mono font-bold text-lg tracking-tighter group-hover:bg-neutral-200 transition">
+          AO
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-lg tracking-tight text-white leading-none">AGENTON</span>
+          <span class="text-[11px] font-mono text-neutral-400 tracking-widest mt-1">SYSTEMS STUDIO</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-300">
+        <a href="#solutions" class="hover:text-white transition">Solutions</a>
+        <a href="#live-demo" class="hover:text-white transition">Live Demo</a>
+        <a href="#case-studies" class="hover:text-white transition">Case Studies</a>
+        <a href="#columns" class="hover:text-white transition">Columns</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <a href="#contact" class="px-5 py-2.5 rounded-lg bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition flex items-center space-x-2">
+          <span>도입 상담 신청</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-36 pb-24 md:pt-44 md:pb-32 grid-bg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 mb-8">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="mono-badge text-xs text-neutral-200 font-medium">[AI-NATIVE OPERATION &amp; AUTOMATION STUDIO]</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15] max-w-4xl">
+        반복되는 마케팅·채용·운영을<br />
+        <span class="text-neutral-300 underline decoration-white/25 underline-offset-8">검증된 AI 시스템</span>으로 대체합니다
+      </h1>
+
+      <p class="mt-8 text-lg sm:text-xl text-neutral-300 max-w-3xl leading-relaxed font-normal">
+        에이전트온은 단순 조언에 그치지 않고, 메타 광고 무인 제어부터 글로벌 인재 검증, 매장 백오피스 정산까지 실제 작동하는 엔지니어링 파이프라인을 구축하고 직접 운영합니다.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#live-demo" class="px-7 py-4 rounded-xl bg-white text-black font-semibold text-base hover:bg-neutral-200 transition flex items-center space-x-2">
+          <span>인터랙티브 데모 체험하기</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </a>
+        <a href="#solutions" class="px-7 py-4 rounded-xl glass-panel text-white font-medium text-base hover:bg-white/10 transition">
+          3대 핵심 솔루션 보기
+        </a>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-panel rounded-2xl p-7 border border-white/10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="mono-badge text-xs text-neutral-400">[METRIC 01 // EFFICIENCY]</span>
+            <span class="mono-badge text-xs px-2 py-0.5 rounded bg-white/10 text-white">VERIFIED</span>
+          </div>
+          <div class="text-4xl sm:text-5xl font-bold text-white tracking-tight font-mono">92%</div>
+          <p class="mt-3 text-base text-neutral-300 font-medium">코드 및 운영 복잡도 절감</p>
+          <p class="mt-1 text-sm text-neutral-400">레거시 수동 관리 도구와 불필요한 대시보드를 제거하고 슬랙 및 표준 API 원장으로 단일화합니다.</p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-7 border border-white/10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="mono-badge text-xs text-neutral-400">[METRIC 02 // PROTECTION]</span>
+            <span class="mono-badge text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ACTIVE</span>
+          </div>
+          <div class="text-4xl sm:text-5xl font-bold text-white tracking-tight font-mono">24/7</div>
+          <p class="mt-3 text-base text-neutral-300 font-medium">실시간 예산·이상치 가드레일</p>
+          <p class="mt-1 text-sm text-neutral-400">무클릭 예산 누수, CPC 급등, 중복 캠페인 집행을 연중무휴 실시간 감시하고 즉시 차단합니다.</p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-7 border border-white/10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="mono-badge text-xs text-neutral-400">[METRIC 03 // INTEGRITY]</span>
+            <span class="mono-badge text-xs px-2 py-0.5 rounded bg-white/10 text-white">SSOT</span>
+          </div>
+          <div class="text-4xl sm:text-5xl font-bold text-white tracking-tight font-mono">100%</div>
+          <p class="mt-3 text-base text-neutral-300 font-medium">SSOT 데이터 무결성 대사</p>
+          <p class="mt-1 text-sm text-neutral-400">메타 실물 서버 원장 및 은행·매입장 원본 데이터를 1:1 대조하여 낙관적 추정 오류를 원천 배제합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Solutions Section -->
+  <section id="solutions" class="py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div>
+          <span class="mono-badge text-xs text-neutral-400 uppercase tracking-widest">[CORE SOLUTIONS // 3 PILLARS]</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight">3대 핵심 엔지니어링 영역</h2>
+        </div>
+        <p class="mt-4 md:mt-0 text-neutral-400 max-w-xl text-base">
+          현장의 파편화된 수작업을 제거하기 위해 설계된 에이전트온의 프로덕션 파이프라인입니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Solution 01 -->
+        <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between hover:border-white/25 transition">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="mono-badge text-sm font-bold text-white px-3 py-1 rounded bg-white/10">01 // AD-TECH</span>
+              <svg class="w-6 h-6 text-neutral-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Ad-Tech &amp; Growth Automation</h3>
+            <p class="text-sm font-mono text-neutral-400 mb-5">슬랙 기반 메타 광고 무인 제어 시스템</p>
+            <p class="text-neutral-300 text-base leading-relaxed mb-6">
+              복잡한 메타 광고 관리자 접속 없이 슬랙(Slack) 내에서 원클릭 인스타그램 게시물 부스팅, 시드니/서울 현지 시간 기준 일정 표시, 무클릭 지출 및 CPC 급등 자동 차단(Fail-Closed 가드레일)을 수행합니다.
+            </p>
+          </div>
+          <ul class="space-y-3 pt-6 border-t border-white/10 text-sm text-neutral-300">
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>Meta Graph API 실물 원장 100% 실시간 동기화</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>시드니(AEST/AEDT) 및 서울(KST) 타임존 자동 변환</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>비정상 과금 감지 시 즉각 캠페인 PAUSED 전환</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Solution 02 -->
+        <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between hover:border-white/25 transition">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="mono-badge text-sm font-bold text-white px-3 py-1 rounded bg-white/10">02 // GLOBAL HR</span>
+              <svg class="w-6 h-6 text-neutral-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Global Talent &amp; HR Pipeline</h3>
+            <p class="text-sm font-mono text-neutral-400 mb-5">멀티모달 인재 소싱 &amp; 채용 대행</p>
+            <p class="text-neutral-300 text-base leading-relaxed mb-6">
+              호주 시드니 F&amp;B 그룹(STODJA PTY LTD - THEECA, EEF COFFEE, NEAR &amp; FAR, 712MUSEUM) 독점 채용 파이프라인, 4단계 멀티모달 실무자 진위 판별, 국내 대학 산학 협력 및 DocuSign 전자계약 완결을 지원합니다.
+            </p>
+          </div>
+          <ul class="space-y-3 pt-6 border-t border-white/10 text-sm text-neutral-300">
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>STODJA 그룹 4대 브랜드 글로벌 채용 파이프라인</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>포트폴리오·작업물 기반 4단계 멀티모달 진위 검증</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>산학 협력 소싱부터 DocuSign 전자서명 원스톱 종결</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Solution 03 -->
+        <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between hover:border-white/25 transition">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="mono-badge text-sm font-bold text-white px-3 py-1 rounded bg-white/10">03 // BACK-OFFICE</span>
+              <svg class="w-6 h-6 text-neutral-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Back-Office &amp; Financial Reconciliation</h3>
+            <p class="text-sm font-mono text-neutral-400 mb-5">정산·세무·백오피스 자동화</p>
+            <p class="text-neutral-300 text-base leading-relaxed mb-6">
+              다중 매장(샐러둡 등) 마감 스케줄링, 장부결제 정산 파이프라인, 계좌·간편결제·매입장 1:1 크로스 대사 및 세무 리포트 자동 생성을 통해 재무 누락을 원천 차단합니다.
+            </p>
+          </div>
+          <ul class="space-y-3 pt-6 border-t border-white/10 text-sm text-neutral-300">
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>다중 매장 마감 스케줄링 및 근태·장부 정산 자동화</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>은행 계좌·카드 명세서·세무사 매입장 1:1 정밀 대조</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <span class="mono-badge text-xs text-emerald-400">[PASS]</span>
+              <span>미증빙·과오납 건 자동 색출 및 월간 세무 패키지 생성</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Demo Section -->
+  <section id="live-demo" class="py-24 md:py-32 bg-surface/60 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="mono-badge text-xs text-emerald-400 uppercase tracking-widest">[INTERACTIVE SYSTEM SANDBOX]</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight">마우스로 직접 조작하는 라이브 아키텍처</h2>
+        </div>
+        <p class="mt-4 md:mt-0 text-neutral-400 max-w-xl text-base">
+          하단 탭과 제어 버튼을 클릭하여 에이전트온의 무인 파이프라인과 가드레일이 실시간으로 어떻게 작동하는지 직접 검증하십시오.
+        </p>
+      </div>
+
+      <!-- Demo Tabs -->
+      <div class="flex flex-wrap gap-3 mb-8">
+        <button type="button" onclick="switchDemoTab('slack')" id="tab-btn-slack" class="px-5 py-3 rounded-xl font-mono text-sm font-semibold bg-white text-black transition">
+          [01] Slack Boost Controller
+        </button>
+        <button type="button" onclick="switchDemoTab('hr')" id="tab-btn-hr" class="px-5 py-3 rounded-xl font-mono text-sm font-semibold glass-panel text-neutral-300 hover:text-white transition">
+          [02] Multimodal HR Verifier
+        </button>
+        <button type="button" onclick="switchDemoTab('ledger')" id="tab-btn-ledger" class="px-5 py-3 rounded-xl font-mono text-sm font-semibold glass-panel text-neutral-300 hover:text-white transition">
+          [03] Ledger Reconciliation
+        </button>
+      </div>
+
+      <!-- Demo Console Container -->
+      <div class="glass-panel rounded-2xl border border-white/15 overflow-hidden">
+        <!-- Console Top Bar -->
+        <div class="px-6 py-4 bg-black/50 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center space-x-3">
+            <span class="mono-badge text-xs px-2.5 py-1 rounded bg-white/10 text-white" id="demo-module-label">MODULE // META-ADS-SLACK-SSOT</span>
+            <span id="demo-status-badge" class="mono-badge text-xs px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-semibold">[ACTIVE]</span>
+          </div>
+          <div class="text-xs font-mono text-neutral-400" id="demo-clock">
+            SYD 18:30 AEST | SEL 17:30 KST | SSOT: GRAPH.FACEBOOK.COM
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          <!-- Left Interactive Panel -->
+          <div class="lg:col-span-7 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-white/10">
+            <h3 id="demo-title" class="text-2xl font-bold text-white mb-2">
+              STODJA Sydney Instagram Boost Controller
+            </h3>
+            <p id="demo-subtitle" class="text-sm text-neutral-400 mb-6">
+              슬랙 리모컨 명령이 메타 마케팅 Graph API 실물 원장을 거친 후에만 UI에 반영되는 Fail-Closed 아키텍처입니다.
+            </p>
+
+            <!-- Dynamic Metrics Box -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div class="p-4 rounded-xl bg-black/40 border border-white/10">
+                <div class="text-xs font-mono text-neutral-400" id="metric-label-1">CAMPAIGN ID</div>
+                <div class="text-lg font-mono font-bold text-white mt-1" id="metric-val-1">120214899031</div>
+              </div>
+              <div class="p-4 rounded-xl bg-black/40 border border-white/10">
+                <div class="text-xs font-mono text-neutral-400" id="metric-label-2">CURRENT METRIC</div>
+                <div class="text-lg font-mono font-bold text-white mt-1" id="metric-val-2">CPC $0.42 AUD</div>
+              </div>
+              <div class="p-4 rounded-xl bg-black/40 border border-white/10">
+                <div class="text-xs font-mono text-neutral-400" id="metric-label-3">GUARDRAIL STATE</div>
+                <div class="text-lg font-mono font-bold text-emerald-400 mt-1" id="metric-val-3">[PASS // NOMINAL]</div>
+              </div>
+            </div>
+
+            <!-- Progress / Quota Bar -->
+            <div class="mb-8">
+              <div class="flex justify-between text-xs font-mono text-neutral-300 mb-2">
+                <span id="progress-label">DAILY BUDGET UTILIZATION (SSOT VERIFIED)</span>
+                <span id="progress-percent">64% ($64.00 / $100.00 AUD)</span>
+              </div>
+              <div class="w-full h-3 bg-black/60 rounded-full overflow-hidden border border-white/10">
+                <div id="progress-bar" class="h-full bg-white transition-all duration-500" style="width: 64%;"></div>
+              </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="flex flex-wrap gap-3">
+              <button type="button" onclick="triggerPrimarySimulation()" id="btn-sim-primary" class="px-5 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition">
+                [즉시 부스팅 시뮬레이션]
+              </button>
+              <button type="button" onclick="triggerGuardrailTest()" id="btn-sim-guardrail" class="px-5 py-3 rounded-xl bg-white/10 text-white border border-white/20 font-semibold text-sm hover:bg-white/20 transition">
+                [가드레일 테스트 (이상치 주입)]
+              </button>
+              <button type="button" onclick="resetDemoState()" class="px-4 py-3 rounded-xl text-neutral-400 hover:text-white font-mono text-xs transition">
+                [초기화]
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Live Audit Log -->
+          <div class="lg:col-span-5 p-6 sm:p-8 bg-black/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="mono-badge text-xs text-neutral-400">[LIVE AUDIT STREAM // ZERO-OPTIMISTIC-UI]</span>
+                <span class="mono-badge text-[11px] text-neutral-500">READ-AFTER-WRITE</span>
+              </div>
+              <div id="demo-log-container" class="space-y-2.5 font-mono text-xs text-neutral-300 max-h-64 overflow-y-auto pr-2">
+                <div class="p-2.5 rounded bg-white/5 border-l-2 border-emerald-400">
+                  <span class="text-neutral-500">[17:30:01]</span> [SSOT] Meta Graph API v21.0 원장 조회 완료 (act_8841209).
+                </div>
+                <div class="p-2.5 rounded bg-white/5 border-l-2 border-white">
+                  <span class="text-neutral-500">[17:30:02]</span> [SYNC] THEECA Sydney IG Reel 캠페인 상태: ACTIVE 확인.
+                </div>
+                <div class="p-2.5 rounded bg-white/5 border-l-2 border-emerald-400">
+                  <span class="text-neutral-500">[17:30:03]</span> [PASS] 무클릭 지출 가드레일 통과 (CTR 2.84%, CPC $0.42 AUD).
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-400">
+              <span>LATENCY: 142ms</span>
+              <span>MODE: FAIL-CLOSED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proven Case Studies & Columns Section -->
+  <section id="case-studies" class="py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-16">
+        <span class="mono-badge text-xs text-neutral-400 uppercase tracking-widest">[PROVEN TRACK RECORD]</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight">프로덕션 구축 사례 (Case Studies)</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+        <!-- Case 1 -->
+        <article class="glass-panel rounded-2xl p-8 flex flex-col justify-between border border-white/10">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-4">
+              <span>CASE 01 // SYDNEY, AUSTRALIA</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 text-white">[PRODUCTION]</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 leading-snug">
+              호주 시드니 STODJA 그룹 메타 광고 슬랙 올인원 대시보드 &amp; 로테이션 자동화
+            </h3>
+            <p class="text-sm text-neutral-300 leading-relaxed mb-6">
+              THEECA, EEF COFFEE, NEAR &amp; FAR, 712MUSEUM 등 시드니 핵심 F&amp;B 브랜드의 인스타그램 릴스/게시물 부스팅을 슬랙 단일 채널로 통합했습니다. 현지 타임존 기준 스케줄링과 소재 피로도 감지 로테이션을 통해 광고 운영 공수를 90% 이상 제거했습니다.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-400">
+            <span>CLIENT: STODJA PTY LTD</span>
+            <span class="text-emerald-400">[ACTIVE]</span>
+          </div>
+        </article>
+
+        <!-- Case 2 -->
+        <article class="glass-panel rounded-2xl p-8 flex flex-col justify-between border border-white/10">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-4">
+              <span>CASE 02 // GLOBAL HR PIPELINE</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 text-white">[PRODUCTION]</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 leading-snug">
+              인스타그램 멀티모달 검증 기반 F&amp;B 핵심 인재 100인 쿼터 소싱 시스템
+            </h3>
+            <p class="text-sm text-neutral-300 leading-relaxed mb-6">
+              단순 이력서 열람의 한계를 극복하기 위해 지원자의 실제 라떼아트, 베이커리, 매장 오퍼레이션 시각 데이터를 4단계 멀티모달 파이프라인으로 판별합니다. 국내 주요 대학 산학 협력 채널과 DocuSign 전자계약을 결합하여 채용 리드타임을 단축했습니다.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-400">
+            <span>QUOTA: 100 VERIFIED TALENTS</span>
+            <span class="text-emerald-400">[VERIFIED]</span>
+          </div>
+        </article>
+
+        <!-- Case 3 -->
+        <article class="glass-panel rounded-2xl p-8 flex flex-col justify-between border border-white/10">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-4">
+              <span>CASE 03 // FINTECH &amp; BACK-OFFICE</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 text-white">[PRODUCTION]</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 leading-snug">
+              프랜차이즈 매장 마감 스케줄 및 무오차 재무 대사(Reconciliation) 엔진
+            </h3>
+            <p class="text-sm text-neutral-300 leading-relaxed mb-6">
+              샐러둡 등 다중 매장의 일일 마감 데이터, B2B 장부결제 내역, 법인/개인 계좌 입출금 및 세무사 매입장 원본을 1:1로 교차 검증합니다. 카드 묶음 결제 분리 대사와 미증빙 비용 자동 추출로 월간 세무 결산 정확도를 100%로 끌어올렸습니다.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-400">
+            <span>ACCURACY: 100% SSOT MATCH</span>
+            <span class="text-emerald-400">[PASS]</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Engineering Columns -->
+      <div id="columns" class="pt-12 border-t border-white/10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="mono-badge text-xs text-neutral-400 uppercase tracking-widest">[INSIGHTS &amp; ARCHITECTURE COLUMNS]</span>
+            <h2 class="mt-3 text-2xl sm:text-3xl font-bold text-white tracking-tight">엔지니어링 인사이트 칼럼</h2>
+          </div>
+          <span class="mono-badge text-xs text-neutral-400 mt-2 md:mt-0">PUBLISHED BY AGENTON RESEARCH</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-7 rounded-2xl bg-surface border border-white/10">
+            <div class="mono-badge text-xs text-neutral-400 mb-2">[COLUMN 01 // SSOT ARCHITECTURE]</div>
+            <h4 class="text-lg font-bold text-white mb-2">왜 슬랙 광고 봇은 낙관적 업데이트(Optimistic UI)를 버려야 하는가</h4>
+            <p class="text-sm text-neutral-300 leading-relaxed">
+              클라이언트 캐시나 로컬 JSON 상태에 의존해 광고가 꺼졌다고 표시하는 순간 예산 누수 사고가 발생합니다. Meta Marketing Graph API 실물 원장 응답만을 유일한 진실 공급원(SSOT)으로 강제하는 Fail-Closed 설계 원칙을 분석합니다.
+            </p>
+          </div>
+
+          <div class="p-7 rounded-2xl bg-surface border border-white/10">
+            <div class="mono-badge text-xs text-neutral-400 mb-2">[COLUMN 02 // FINANCIAL RECONCILIATION]</div>
+            <h4 class="text-lg font-bold text-white mb-2">추론 없는 재무 대사: 매입장 원본과 카드 명세서 1:1 매칭 알고리즘</h4>
+            <p class="text-sm text-neutral-300 leading-relaxed">
+              통장 묶음 출금 내역만으로 개별 해외 결제 원화 환산액을 추정하는 것은 회계 오류의 지름길입니다. 원본 명세서와 세무사 매입장을 바이트 단위로 대조하고 불일치 항목을 격리하는 결정론적 파이프라인을 소개합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Consultation Section -->
+  <section id="contact" class="py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="mono-badge text-xs text-emerald-400 uppercase tracking-widest">[CONSULTATION &amp; INQUIRY]</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight">프로젝트 및 자동화 파이프라인 도입 문의</h2>
+        <p class="mt-4 text-neutral-300 text-base">
+          비즈니스 목표와 현재 겪고 계신 운영 병목을 남겨주시면, 에이전트온 엔지니어링 팀이 최적의 자동화 아키텍처와 도입 일정을 제안해 드립니다.
+        </p>
+      </div>
+
+      <form id="consultation-form" onsubmit="handleConsultationSubmit(event)" class="glass-panel rounded-2xl p-8 sm:p-10 border border-white/15 space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="company" class="block text-xs font-mono text-neutral-300 mb-2">기업명 / 브랜드명 *</label>
+            <input type="text" id="company" name="company" required placeholder="예: 에이전트온 / STODJA" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition">
+          </div>
+          <div>
+            <label for="name" class="block text-xs font-mono text-neutral-300 mb-2">담당자 성함 및 직책 *</label>
+            <input type="text" id="name" name="name" required placeholder="예: 홍길동 대표" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="contact-info" class="block text-xs font-mono text-neutral-300 mb-2">연락처 (전화번호 또는 이메일) *</label>
+            <input type="text" id="contact-info" name="contactInfo" required placeholder="예: 010-0000-0000 / email@company.com" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition">
+          </div>
+          <div>
+            <label for="category" class="block text-xs font-mono text-neutral-300 mb-2">관심 솔루션 분야 *</label>
+            <select id="category" name="category" required class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition">
+              <option value="메타 광고 자동화">메타 광고 자동화 (Slack Boost Controller)</option>
+              <option value="글로벌·기업 채용 대행">글로벌·기업 채용 대행 (Multimodal HR Pipeline)</option>
+              <option value="백오피스·정산 자동화">백오피스·정산 자동화 (Financial Reconciliation)</option>
+              <option value="기타 엔지니어링 문의">기타 맞춤형 AI 오퍼레이션 구축</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="message" class="block text-xs font-mono text-neutral-300 mb-2">해결하고 싶은 비즈니스 과제 및 문의 내용 *</label>
+          <textarea id="message" name="message" rows="4" required placeholder="현재 수동으로 반복하고 있는 업무나 자동화 도입을 희망하시는 범위를 자유롭게 작성해 주세요." class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition"></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+          <div class="text-xs text-neutral-400">
+            제출 시 <a href="/privacy" class="underline text-neutral-200 hover:text-white">개인정보처리방침</a>에 동의한 것으로 간주됩니다.
+          </div>
+          <button type="submit" class="px-8 py-4 rounded-xl bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition">
+            상담 신청서 전송 및 복사
+          </button>
+        </div>
+
+        <!-- Feedback Toast Box -->
+        <div id="form-feedback" class="hidden p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 text-xs font-mono leading-relaxed"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Official Footer (SSOT Legal Compliance) -->
+  <footer class="py-16 bg-obsidian text-neutral-400 text-sm">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div class="md:col-span-7 space-y-3">
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-7 h-7 rounded bg-white text-black flex items-center justify-center font-mono font-bold text-sm">
+              AO
+            </div>
+            <span class="font-bold text-base text-white tracking-tight">에이전트온 (AgentOn)</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 font-medium">
+            상호명: 에이전트온 (AgentOn) &nbsp;|&nbsp; 대표자: 강현욱 &nbsp;|&nbsp; 사업자등록번호: 233-62-00821
+          </p>
+          <p class="text-xs sm:text-sm text-neutral-400">
+            비즈니스·도입·개인정보 보호 문의: <a href="mailto:daviidkang@gmail.com" class="text-neutral-200 hover:underline">daviidkang@gmail.com</a>
+          </p>
+          <p class="text-xs sm:text-sm text-neutral-400">
+            글로벌 채용·산학협력·파트너십 문의: <a href="mailto:daviidkang2@gmail.com" class="text-neutral-200 hover:underline">daviidkang2@gmail.com</a>
+          </p>
+          <p class="text-xs text-neutral-500 pt-1">
+            공식 도메인: https://agenton.kr
+          </p>
+        </div>
+
+        <div class="md:col-span-5 flex flex-col md:items-end justify-between space-y-4">
+          <div class="flex flex-wrap gap-6 text-xs font-medium text-neutral-300">
+            <a href="/privacy" class="hover:text-white underline underline-offset-4">개인정보처리방침</a>
+            <a href="/terms" class="hover:text-white underline underline-offset-4">서비스 이용약관</a>
+          </div>
+          <div class="text-xs font-mono text-neutral-500">
+            Copyright 2026 AgentOn. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Simulation & Form Script -->
+  <script>
+    let currentTab = 'slack';
+
+    const demoConfigs = {
+      slack: {
+        moduleLabel: 'MODULE // META-ADS-SLACK-SSOT',
+        statusBadge: '[ACTIVE]',
+        statusClass: 'bg-emerald-500/20 text-emerald-300',
+        title: 'STODJA Sydney Instagram Boost Controller',
+        subtitle: '슬랙 리모컨 명령이 메타 마케팅 Graph API 실물 원장을 거친 후에만 UI에 반영되는 Fail-Closed 아키텍처입니다.',
+        m1Label: 'CAMPAIGN ID',
+        m1Val: '120214899031',
+        m2Label: 'CURRENT METRIC',
+        m2Val: 'CPC $0.42 AUD',
+        m3Label: 'GUARDRAIL STATE',
+        m3Val: '[PASS // NOMINAL]',
+        progressLabel: 'DAILY BUDGET UTILIZATION (SSOT VERIFIED)',
+        progressPercent: '64% ($64.00 / $100.00 AUD)',
+        progressWidth: '64%',
+        primaryBtn: '[즉시 부스팅 시뮬레이션]',
+        guardrailBtn: '[가드레일 테스트 (CPC 급등 차단)]',
+        logs: [
+          '[17:30:01] [SSOT] Meta Graph API v21.0 원장 조회 완료 (act_8841209).',
+          '[17:30:02] [SYNC] THEECA Sydney IG Reel 캠페인 상태: ACTIVE 확인.',
+          '[17:30:03] [PASS] 무클릭 지출 가드레일 통과 (CTR 2.84%, CPC $0.42 AUD).'
+        ]
+      },
+      hr: {
+        moduleLabel: 'MODULE // MULTIMODAL-HR-VERIFIER',
+        statusBadge: '[VERIFIED]',
+        statusClass: 'bg-emerald-500/20 text-emerald-300',
+        title: 'STODJA F&B 4-Stage Multimodal Talent Verifier',
+        subtitle: '지원자의 실무 영상·포트폴리오 진위 여부를 4단계로 판별하고 DocuSign 전자계약까지 자동 연결합니다.',
+        m1Label: 'BATCH QUOTA',
+        m1Val: '78 / 100 FILLED',
+        m2Label: 'AUTHENTICITY SCORE',
+        m2Val: '98.4% CONFIDENCE',
+        m3Label: 'PIPELINE STAGE',
+        m3Val: '[STAGE 4 // DOCUSIGN]',
+        progressLabel: 'SYDNEY F&B TALENT QUOTA FULFILLMENT',
+        progressPercent: '78% (78 / 100 VERIFIED CANDIDATES)',
+        progressWidth: '78%',
+        primaryBtn: '[신규 지원자 멀티모달 검증 실행]',
+        guardrailBtn: '[가드레일 테스트 (도용 포트폴리오 차단)]',
+        logs: [
+          '[17:31:10] [INGEST] 지원자 #079 바리스타 라떼아트 작업 영상 프레임 추출 완료.',
+          '[17:31:12] [VERIFY] EXIF 메타데이터 및 작업 일관성 교차 검증: 진위 통과.',
+          '[17:31:14] [PASS] DocuSign 영문 고용계약서 자동 발송 대기열 등록.'
+        ]
+      },
+      ledger: {
+        moduleLabel: 'MODULE // LEDGER-RECONCILIATION-ENGINE',
+        statusBadge: '[SYNCED]',
+        statusClass: 'bg-emerald-500/20 text-emerald-300',
+        title: 'Multi-Store Ledger & Tax Invoice Reconciliation',
+        subtitle: '다중 매장 마감 내역, 계좌 입출금, 카드 명세서 및 세무사 매입장 원본을 1:1 전수 대조합니다.',
+        m1Label: 'TARGET PERIOD',
+        m1Val: '2026-10 MONTHLY',
+        m2Label: 'MATCHED ENTRIES',
+        m2Val: '1,420 / 1,420 ROWS',
+        m3Label: 'DISCREPANCY',
+        m3Val: '[0 KRW // EXACT]',
+        progressLabel: '1:1 CROSS-LEDGER RECONCILIATION RATE',
+        progressPercent: '100% (1,420 VERIFIED TRANSACTIONS)',
+        progressWidth: '100%',
+        primaryBtn: '[매입장 1:1 전수 대사 실행]',
+        guardrailBtn: '[가드레일 테스트 (카드 묶음결제 격리)]',
+        logs: [
+          '[17:32:01] [LOAD] 세무사 매입장 원본 엑셀 및 법인 계좌 내역 로드 완료.',
+          '[17:32:03] [MATCH] 1,420건 전표 1:1 금액·사업자번호 일치 확인.',
+          '[17:32:05] [PASS] 추론 0건, 미증빙 0건. 월간 세무 결산 리포트 생성 완료.'
+        ]
+      }
+    };
+
+    function renderLogs(logs, highlightType) {
+      const container = document.getElementById('demo-log-container');
+      container.innerHTML = '';
+      logs.forEach((line) => {
+        const div = document.createElement('div');
+        let borderColor = 'border-emerald-400';
+        if (line.includes('[BLOCK]') || line.includes('[PAUSED]') || line.includes('[ALERT]')) {
+          borderColor = 'border-amber-400 text-amber-200';
+        }
+        div.className = 'p-2.5 rounded bg-white/5 border-l-2 ' + borderColor;
+        div.textContent = line;
+        container.appendChild(div);
+      });
+    }
+
+    function switchDemoTab(tabKey) {
+      currentTab = tabKey;
+      ['slack', 'hr', 'ledger'].forEach((k) => {
+        const btn = document.getElementById('tab-btn-' + k);
+        if (k === tabKey) {
+          btn.className = 'px-5 py-3 rounded-xl font-mono text-sm font-semibold bg-white text-black transition';
+        } else {
+          btn.className = 'px-5 py-3 rounded-xl font-mono text-sm font-semibold glass-panel text-neutral-300 hover:text-white transition';
+        }
+      });
+      resetDemoState();
+    }
+
+    function resetDemoState() {
+      const cfg = demoConfigs[currentTab];
+      document.getElementById('demo-module-label').textContent = cfg.moduleLabel;
+      const badge = document.getElementById('demo-status-badge');
+      badge.textContent = cfg.statusBadge;
+      badge.className = 'mono-badge text-xs px-2.5 py-1 rounded font-semibold ' + cfg.statusClass;
+
+      document.getElementById('demo-title').textContent = cfg.title;
+      document.getElementById('demo-subtitle').textContent = cfg.subtitle;
+      document.getElementById('metric-label-1').textContent = cfg.m1Label;
+      document.getElementById('metric-val-1').textContent = cfg.m1Val;
+      document.getElementById('metric-label-2').textContent = cfg.m2Label;
+      document.getElementById('metric-val-2').textContent = cfg.m2Val;
+      document.getElementById('metric-label-3').textContent = cfg.m3Label;
+      const m3 = document.getElementById('metric-val-3');
+      m3.textContent = cfg.m3Val;
+      m3.className = 'text-lg font-mono font-bold text-emerald-400 mt-1';
+
+      document.getElementById('progress-label').textContent = cfg.progressLabel;
+      document.getElementById('progress-percent').textContent = cfg.progressPercent;
+      const bar = document.getElementById('progress-bar');
+      bar.style.width = cfg.progressWidth;
+      bar.className = 'h-full bg-white transition-all duration-500';
+
+      document.getElementById('btn-sim-primary').textContent = cfg.primaryBtn;
+      document.getElementById('btn-sim-guardrail').textContent = cfg.guardrailBtn;
+      renderLogs(cfg.logs);
+    }
+
+    function triggerPrimarySimulation() {
+      const badge = document.getElementById('demo-status-badge');
+      const m3 = document.getElementById('metric-val-3');
+      const bar = document.getElementById('progress-bar');
+
+      if (currentTab === 'slack') {
+        badge.textContent = '[BOOSTED // ACTIVE]';
+        badge.className = 'mono-badge text-xs px-2.5 py-1 rounded font-semibold bg-emerald-500/20 text-emerald-300';
+        document.getElementById('metric-val-2').textContent = 'CPC $0.38 AUD';
+        m3.textContent = '[SSOT CONFIRMED]';
+        m3.className = 'text-lg font-mono font-bold text-emerald-400 mt-1';
+        document.getElementById('progress-percent').textContent = '72% ($72.00 / $100.00 AUD)';
+        bar.style.width = '72%';
+        bar.className = 'h-full bg-emerald-400 transition-all duration-500';
+        renderLogs([
+          '[17:35:10] [CMD] Slack 원클릭 게시물 부스팅 요청 수신 (Post #IG_99412).',
+          '[17:35:11] [API] Meta Graph API POST /adsets 응답 수신: status=ACTIVE.',
+          '[17:35:12] [SSOT] 실물 응답 검증 완료 후 Slack UI chat.update 동기화 완료.'
+        ]);
+      } else if (currentTab === 'hr') {
+        badge.textContent = '[CANDIDATE #080 VERIFIED]';
+        document.getElementById('metric-val-1').textContent = '80 / 100 FILLED';
+        document.getElementById('progress-percent').textContent = '80% (80 / 100 VERIFIED CANDIDATES)';
+        bar.style.width = '80%';
+        bar.className = 'h-full bg-emerald-400 transition-all duration-500';
+        renderLogs([
+          '[17:36:01] [VISION] 지원자 #080 에스프레소 추출 및 스티밍 실기 영상 검증 통과.',
+          '[17:36:02] [MATCH] STODJA 시드니 EEF COFFEE 헤드 바리스타 포지션 매칭.',
+          '[17:36:03] [PASS] DocuSign 계약서 서명 완료 및 온보딩 패킷 발송.'
+        ]);
+      } else {
+        badge.textContent = '[AUDIT COMPLETE]';
+        document.getElementById('metric-val-2').textContent = '1,458 / 1,458 ROWS';
+        document.getElementById('progress-percent').textContent = '100% (1,458 VERIFIED TRANSACTIONS)';
+        bar.style.width = '100%';
+        bar.className = 'h-full bg-emerald-400 transition-all duration-500';
+        renderLogs([
+          '[17:37:01] [SCAN] 신규 매장 마감 정산서 38건 추가 인제스트 완료.',
+          '[17:37:02] [VERIFY] 세무사 매입장 원본과 사업자등록번호·공급가액 100% 일치.',
+          '[17:37:03] [PASS] 월간 정산 무결성 검증 통과 (오차 0원).'
+        ]);
+      }
+    }
+
+    function triggerGuardrailTest() {
+      const badge = document.getElementById('demo-status-badge');
+      const m3 = document.getElementById('metric-val-3');
+      const bar = document.getElementById('progress-bar');
+
+      if (currentTab === 'slack') {
+        badge.textContent = '[PAUSED // FAIL-CLOSED]';
+        badge.className = 'mono-badge text-xs px-2.5 py-1 rounded font-semibold bg-amber-500/20 text-amber-300';
+        document.getElementById('metric-val-2').textContent = 'CPC $2.95 AUD (SPIKE)';
+        m3.textContent = '[AUTO-PAUSED]';
+        m3.className = 'text-lg font-mono font-bold text-amber-400 mt-1';
+        bar.className = 'h-full bg-amber-400 transition-all duration-500';
+        renderLogs([
+          '[17:38:01] [ALERT] 비정상 CPC 급등 감지 ($2.95 AUD > 임계치 $1.20 AUD).',
+          '[17:38:02] [BLOCK] Meta Graph API 즉시 호출 -> 캠페인 상태 PAUSED 강제 전환.',
+          '[17:38:03] [PAUSED] 예산 누수 차단 완료 및 담당자 슬랙 긴급 알림 전송.'
+        ]);
+      } else if (currentTab === 'hr') {
+        badge.textContent = '[REJECTED // GUARDRAIL]';
+        badge.className = 'mono-badge text-xs px-2.5 py-1 rounded font-semibold bg-amber-500/20 text-amber-300';
+        document.getElementById('metric-val-2').textContent = '14.2% (MISMATCH)';
+        m3.textContent = '[BLOCKED // STAGE 2]';
+        m3.className = 'text-lg font-mono font-bold text-amber-400 mt-1';
+        bar.className = 'h-full bg-amber-400 transition-all duration-500';
+        renderLogs([
+          '[17:38:15] [ALERT] 제출된 이미지에서 외부 웹 스톡 사진 해시 중복 검출.',
+          '[17:38:16] [BLOCK] 4단계 멀티모달 진위 판별 가드레일에 의해 자동 반려 처리.',
+          '[17:38:17] [PAUSED] 원본 작업 영상 재제출 요청 안내 발송.'
+        ]);
+      } else {
+        badge.textContent = '[ISOLATED // RAW REQUIRED]';
+        badge.className = 'mono-badge text-xs px-2.5 py-1 rounded font-semibold bg-amber-500/20 text-amber-300';
+        document.getElementById('metric-val-2').textContent = '1 BUNDLED ROW ISOLATED';
+        m3.textContent = '[HOLD // CARD STATEMENT]';
+        m3.className = 'text-lg font-mono font-bold text-amber-400 mt-1';
+        bar.className = 'h-full bg-amber-400 transition-all duration-500';
+        renderLogs([
+          '[17:39:01] [ALERT] 통장 내역 내 신용카드 대금 묶음 출금(합산 결제) 1건 감지.',
+          '[17:39:02] [BLOCK] 임의 금액 추론 금지 원칙 작동 -> 해당 전표 격리.',
+          '[17:39:03] [PAUSED] 카드사 실제 명세서 원본 데이터 대조 요청 생성.'
+        ]);
+      }
+    }
+
+    function handleConsultationSubmit(event) {
+      event.preventDefault();
+      const company = document.getElementById('company').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const contactInfo = document.getElementById('contact-info').value.trim();
+      const category = document.getElementById('category').value;
+      const message = document.getElementById('message').value.trim();
+
+      const subject = '[AgentOn 도입 상담] ' + company + ' (' + name + ') - ' + category;
+      const bodyLines = [
+        '기업/브랜드명: ' + company,
+        '담당자 성함: ' + name,
+        '연락처: ' + contactInfo,
+        '관심 분야: ' + category,
+        '',
+        '[문의 내용]',
+        message
+      ];
+      const bodyText = bodyLines.join('\n');
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(bodyText).catch(function() {});
+      }
+
+      const feedback = document.getElementById('form-feedback');
+      feedback.classList.remove('hidden');
+      feedback.textContent = '[READY] 문의 내용이 클립보드에 복사되었으며 기본 메일 클라이언트를 호출합니다. 메일 창이 열리지 않는 경우 daviidkang@gmail.com 으로 붙여넣어 전송해 주십시오.';
+
+      const mailtoUrl = 'mailto:daviidkang@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+      window.location.href = mailtoUrl;
+    }
+  </script>
+</body>
+</html>

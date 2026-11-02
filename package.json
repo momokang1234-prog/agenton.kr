@@ -1,0 +1,12 @@
+{
+  "name": "agenton-kr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AgentOn (에이전트온) Official Website - AI-Native Operation & Automation Studio",
+  "scripts": {
+    "verify": "python3 scripts/verify_site.py",
+    "serve": "python3 -m http.server 3000 --directory public"
+  },
+  "author": "Kang Hyeon-ug <daviidkang@gmail.com>",
+  "license": "UNLICENSED"
+}
